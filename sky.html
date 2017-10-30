@@ -1,0 +1,19 @@
+<html>
+<body>
+<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/AltspaceVR/AltspaceSDK/v2.0.2/dist/altspace.min.js"></script>
+
+<!-- set up the scene -->
+<a-scene altspace='fullspace:true'>
+
+    <!-- preload all our textures -->
+    <a-assets>
+        <img id='skytest' src='assets/images/skytest.jpg'/>
+    </a-assets>
+
+    <a-sky src='#skytest' radius='50000'></a-sky>
+
+</a-scene>
+
+</body>
+</html>
