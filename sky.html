@@ -12,7 +12,7 @@
     	<a-asset-item id="cover-mmm" src="assets/obj/book.mtl"></a-asset-item>
         <img id='sky' src='assets/images/pinksky.jpg'/>
 
-        <a-mixin id="parent-to-right-hand" rotation="0 0 0" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+        <a-mixin id="righthand" rotation="0 0 0" position="0 0 0" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
 
 		<a-mixin id="book"
 			obj-model="obj: #book; mtl: #cover-mmm" collapse-model
@@ -28,7 +28,7 @@
     <a-entity
 		id="book-instantiator"
 		mixin="book"
-		instantiator="on: click; mixin: book parent-to-right-hand"
+		instantiator="on: click; mixin: book righthand"
 		position="2 1.7 0">
 	</a-entity>
 
