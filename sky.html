@@ -59,7 +59,7 @@
 
         <a-mixin id="righthand" rotation="0 -90 -130" position="-.08 -.08 -.1" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
 
-		<a-mixin id="book" obj-model="obj: #book; mtl: #cover-mmm" scale=".25 .25 .25"></a-mixin>
+		<a-mixin id="book-mmm" obj-model="obj: #book; mtl: #cover-mmm" scale=".25 .25 .25"></a-mixin>
 
     </a-assets>
 
@@ -69,7 +69,7 @@
 
     <!--<a-entity obj-model='obj: #book; mtl: #cover-mmm' position="0 1.7 0" rotation="-90 90 0" scale=".07 .07 .07"></a-entity>-->
     
-    <a-entity id="book-instantiator" mixin="book" instantiator="on: click; mixin: book righthand" position="0 1.7 0" rotation="-90 90 0" scale=".9 .9 .9"> </a-entity>
+    <a-entity id="book-instantiator" mixin="book-mmm" instantiator="on: click; mixin: book-mmm righthand" position="0 1.7 0" rotation="-90 90 0" scale=".9 .9 .9"></a-entity>
 
     <!--<a-sphere position='-10 3 25' scale='0 0 0' color='red' rotation='0 180 0'></a-sphere>-->
 
