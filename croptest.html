@@ -1,0 +1,97 @@
+<html>
+<head>
+	<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+	<script src="https://cdn.rawgit.com/AltspaceVR/AltspaceSDK/v2.6.1/dist/altspace.min.js"></script>
+
+	<script>
+	// Gets tracking and stuff. Maybe.
+    altspace.getThreeJSTrackingSkeleton().then(function (skeleton) {
+          window.head = skeleton.getJoint('Head');
+        });
+        AFRAME.registerComponent('altspace-look-at', {
+          init: function () {
+            if (!window.altspace || !altspace.inClient) { return; }
+          },
+          tick: function () {
+            if (!window.head || !this.el.object3D) { return; }
+            this.el.object3D.lookAt(window.head.position); 
+          }
+        })
+	</script>
+
+	<script>
+    // n-skeleton-parent only works with root meshes at the moment. Since most model loaders use a root
+    // container object, we need to collapse the model so that n-skeleton-parent can access the mesh directly.
+    AFRAME.registerComponent('collapse-model', {
+        init: function () {
+            this.el.addEventListener('model-loaded', function () {
+                this.el.object3DMap.mesh.updateMatrixWorld();
+                var mesh;
+                this.el.object3DMap.mesh.traverse(function (obj) {
+                    if (!mesh && obj instanceof THREE.Mesh) {
+                        mesh = obj;
+                    }
+                }.bind(this))
+                if (mesh) {
+                    this.el.sceneEl.object3D.updateMatrixWorld(true);
+                    mesh.scale.copy(mesh.getWorldScale());
+                    this.el.setObject3D('mesh', mesh);
+                    // setObject3D emits this event in a-frame 0.4.0
+                    this.el.emit('object3dset', {
+                        type: 'mesh'
+                    });
+                }
+            }.bind(this));
+        }
+    });
+	</script>
+</head>
+
+
+<body>
+
+<a-scene altspace='fullspace:true' sync-system="author: meeka; app: booksync">
+
+    <a-assets>
+    	<a-asset-item id="book" src="assets/obj/book.obj"></a-asset-item>
+    	<a-asset-item id="cover-mmm" src="assets/obj/book01.mtl"></a-asset-item>
+    	<a-asset-item id="cover-cwb" src="assets/obj/book02.mtl"></a-asset-item>
+    	<a-asset-item id="cover-bha" src="assets/obj/book03.mtl"></a-asset-item>
+    	<a-asset-item id="crop" src="assets/obj/crop.obj"></a-asset-item>
+    	<a-asset-item id="black" src="assets/obj/crop.mtl"></a-asset-item>
+        <a-mixin id="crop" obj-model="obj: #crop; mtl: #black" collapse-model scale=".25 .25 .25"></a-mixin>
+        <a-mixin id="book-mmm" obj-model="obj: #book; mtl: #cover-mmm" collapse-model scale=".25 .25 .25"></a-mixin>
+        <a-mixin id="book-cwb" obj-model="obj: #book; mtl: #cover-cwb" collapse-model scale=".25 .25 .25"></a-mixin>
+        <a-mixin id="book-bha" obj-model="obj: #book; mtl: #cover-bha" collapse-model scale=".25 .25 .25"></a-mixin>
+        <a-mixin id="righthand" rotation="0 -90 -130" position="-.08 -.08 -.1" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+        <a-mixin id="crophand" rotation="0 -90 -130" position="-.08 -.08 -.1" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+    </a-assets>
+
+    <a-entity id="bookpile" position="0 0 0" rotation="0 90 0">
+    		<a-entity id="book-instantiator01" mixin="book-mmm" instantiator="on: click; group: book-mmm; mixin: book-mmm righthand" position="0 1.573 -.25" rotation="-90 90 0" scale=".25 .25 .25"></a-entity>
+				<a-entity id="book01" position="0 1.44 -.25" rotation="0 180 0" mixin="book book-mmm"></a-entity>
+    			<a-entity id="book01" position="0 1.412 -.25" rotation="0 178 0" mixin="book book-mmm"></a-entity>
+    			<a-entity id="book01" position="0 1.384 -.25" rotation="0 180 0" mixin="book book-mmm"></a-entity>
+    			<a-entity id="book01" position="0 1.356 -.25" rotation="0 182 0" mixin="book book-mmm"></a-entity>
+    			<a-entity id="book01" position="0 1.328 -.25" rotation="0 180 0" mixin="book book-mmm"></a-entity>
+    		<a-entity id="book-instantiator02" mixin="book-cwb" instantiator="on: click; group: book-cwb; mixin: book-cwb righthand" position="0 1.573 0" rotation="-90 90 0" scale=".25 .25 .25"></a-entity>
+    			<a-entity id="book02" position="0 1.44 0" rotation="0 180 0" mixin="book book-cwb"></a-entity>
+    			<a-entity id="book02" position="0 1.412 0" rotation="0 178 0" mixin="book book-cwb"></a-entity>
+    			<a-entity id="book02" position="0 1.384 0" rotation="0 180 0" mixin="book book-cwb"></a-entity>
+    			<a-entity id="book02" position="0 1.356 0" rotation="0 182 0" mixin="book book-cwb"></a-entity>
+    			<a-entity id="book02" position="0 1.328 0" rotation="0 180 0" mixin="book book-cwb"></a-entity>
+    		<a-entity id="book-instantiator03" mixin="book-bha" instantiator="on: click; group: book-bha; mixin: book-bha righthand" position="0 1.573 .25" rotation="-90 90 0" scale=".25 .25 .25"></a-entity>
+    			<a-entity id="book03" position="0 1.44 .25" rotation="0 180 0" mixin="book book-bha"></a-entity>
+    			<a-entity id="book03" position="0 1.412 .25" rotation="0 178 0" mixin="book book-bha"></a-entity>
+    			<a-entity id="book03" position="0 1.384 .25" rotation="0 180 0" mixin="book book-bha"></a-entity>
+    			<a-entity id="book03" position="0 1.356 .25" rotation="0 182 0" mixin="book book-bha"></a-entity>
+    			<a-entity id="book03" position="0 1.328 .25" rotation="0 180 0" mixin="book book-bha"></a-entity>
+    		<a-entity id="crop-instantiator" mixin="crop" instantiator="on: click; group: crop; mixin: crop crophand" position="0 1.573 .50" rotation="-90 90 0" scale=".25 .25 .25"></a-entity>
+    		<a-box color="#2cb2b8" height=".01" width=".25" depth=".9" position="0 1.315 0" opacity="0.10"></a-box>
+    		<a-box color="#105a5d" height=".01" width=".15" depth=".80" position="0 1.255 0" opacity="0.10"></a-box>
+    		<a-box color="#073638" height=".01" width=".10" depth=".75" position="0 1.195 0" opacity="0.10"></a-box>
+    </a-entity>
+
+</a-scene>
+</body>
+</html>	
