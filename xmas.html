@@ -55,10 +55,12 @@
     <a-assets>
         <a-asset-item id="punchbowl-obj" src="xmas/punchbowl.obj"></a-asset-item>
         <a-asset-item id="punchbowl-mtl" src="xmas/punchbowl.mtl"></a-asset-item>
+        <a-asset-item id="punchbowl-dae" src="xmas/punchbowl.dae"></a-asset-item>
     	<a-mixin id="righthand" rotation="0 -90 -130" position="-.08 -.08 -.1" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
     </a-assets>
 
     <a-entity obj-model='obj: #punchbowl-obj; mtl: #punchbowl-mtl' position="0 0 0" rotation="0 0 0" scale="1 1 1" opacity="1" n-mesh-collider="type: environment; convex: false"></a-entity>
+    <a-entity collada-model='#punchbowl-dae' position="5 0 5" rotation="0 0 0" scale="1 1 1" opacity="1" collapse-model n-mesh-collider="type: environment; convex: false"></a-entity>
 
 </a-scene>
 </body>
