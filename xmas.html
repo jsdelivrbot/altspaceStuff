@@ -53,15 +53,16 @@
 <a-scene altspace='fullspace:true' sync-system="author: meeka; app: booksync">
 
     <a-assets>
-        <a-asset-item id="punchbowl-obj" src="xmas/punchbowl.obj"></a-asset-item>
-        <a-asset-item id="punchbowl-mtl" src="xmas/punchbowl.mtl"></a-asset-item>
-        <a-asset-item id="punchbowl-dae" src="xmas/punchbowl.dae"></a-asset-item>
+        <a-asset-item id="pb-obj" src="xmas/pb.obj"></a-asset-item>
+        <a-asset-item id="pb-mtl" src="xmas/pb.mtl"></a-asset-item>
+        <a-asset-item id="gbm-obj" src="xmas/gbm.obj"></a-asset-item>
+        <a-asset-item id="gbm-mtl" src="xmas/gbm.mtl"></a-asset-item>
     	<a-mixin id="righthand" rotation="0 -90 -130" position="-.08 -.08 -.1" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
     </a-assets>
 
-    <a-entity obj-model='obj: #punchbowl-obj; mtl: #punchbowl-mtl' position="0 0 0" rotation="0 0 0" scale="1 1 1" opacity="1" n-mesh-collider="type: environment; convex: false"></a-entity>
-    <a-entity collada-model='#punchbowl-dae' position="5 0 5" rotation="0 0 0" scale="1 1 1" opacity="1" collapse-model n-mesh-collider="type: environment; convex: false"></a-entity>t
-
+    <a-entity obj-model='obj: #pb-obj; mtl: #pb-mtl' position="0 0 0" rotation="0 0 0" scale="1 1 1" opacity=".5" side="double"></a-entity>
+    <a-entity obj-model='obj: #gbm-obj; mtl: #gbm-mtl' position="2 0 0" rotation="0 0 0" scale="1 1 1" opacity="1" side="double"></a-entity>
+    
 </a-scene>
 </body>
 </html>	
