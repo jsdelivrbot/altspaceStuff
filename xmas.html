@@ -53,14 +53,14 @@
 <a-scene altspace='fullspace:true' sync-system="author: meeka; app: booksync">
 
     <a-assets>
-        <a-asset-item id="pb-obj" src="xmas/pb.obj"></a-asset-item>
-        <a-asset-item id="pb-mtl" src="xmas/pb.mtl"></a-asset-item>
+        <a-asset-item id="pb-obj" src="assets/obj/cookie.obj"></a-asset-item>
+        <a-asset-item id="pb-mtl" src="assets/obj/cookie.mtl"></a-asset-item>
         <a-asset-item id="gbm-obj" src="xmas/gbm.obj"></a-asset-item>
         <a-asset-item id="gbm-mtl" src="xmas/gbm.mtl"></a-asset-item>
     	<a-mixin id="righthand" rotation="0 -90 -130" position="-.08 -.08 -.1" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
     </a-assets>
 
-    <a-entity obj-model='obj: #pb-obj; mtl: #pb-mtl' position="0 0 0" rotation="0 0 0" scale="1 1 1" opacity=".5" material="side: double;"></a-entity>
+    <a-entity obj-model='obj: #pb-obj; mtl: #pb-mtl' position="0 1.25 0" rotation="0 0 0" scale="1 1 1" opacity=".5" material="side: double;"></a-entity>
     <a-entity obj-model='obj: #gbm-obj; mtl: #gbm-mtl' position="2 1.25 0" rotation="0 0 0" scale="1 1 1" opacity="1" material="side: double;"></a-entity>
     
 </a-scene>
