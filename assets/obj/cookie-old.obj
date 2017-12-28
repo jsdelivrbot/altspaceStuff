@@ -1,6 +1,6 @@
 # Blender v2.78 (sub 0) OBJ File: 'cookie.blend'
 # www.blender.org
-mtllib cookies.mtl
+mtllib cookie.mtl
 o Circle
 v 0.000000 -0.031227 -0.058104
 v -0.505785 -0.029861 -0.161817
