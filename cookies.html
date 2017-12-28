@@ -1,0 +1,74 @@
+<html>
+<head>
+	<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+	<script src="https://cdn.rawgit.com/AltspaceVR/AltspaceSDK/v2.6.1/dist/altspace.min.js"></script>
+
+	<script>
+	// Gets tracking and stuff. Maybe.
+    altspace.getThreeJSTrackingSkeleton().then(function (skeleton) {
+          window.head = skeleton.getJoint('Head');
+        });
+        AFRAME.registerComponent('altspace-look-at', {
+          init: function () {
+            if (!window.altspace || !altspace.inClient) { return; }
+          },
+          tick: function () {
+            if (!window.head || !this.el.object3D) { return; }
+            this.el.object3D.lookAt(window.head.position); 
+          }
+        })
+	</script>
+
+	<script>
+    // n-skeleton-parent only works with root meshes at the moment. Since most model loaders use a root
+    // container object, we need to collapse the model so that n-skeleton-parent can access the mesh directly.
+    AFRAME.registerComponent('collapse-model', {
+        init: function () {
+            this.el.addEventListener('model-loaded', function () {
+                this.el.object3DMap.mesh.updateMatrixWorld();
+                var mesh;
+                this.el.object3DMap.mesh.traverse(function (obj) {
+                    if (!mesh && obj instanceof THREE.Mesh) {
+                        mesh = obj;
+                    }
+                }.bind(this))
+                if (mesh) {
+                    this.el.sceneEl.object3D.updateMatrixWorld(true);
+                    mesh.scale.copy(mesh.getWorldScale());
+                    this.el.setObject3D('mesh', mesh);
+                    // setObject3D emits this event in a-frame 0.4.0
+                    this.el.emit('object3dset', {
+                        type: 'mesh'
+                    });
+                }
+            }.bind(this));
+        }
+    });
+	</script>
+</head>
+
+
+<body>
+
+<a-scene altspace='fullspace:true' sync-system="author: meeka; app: booksync">
+
+    <a-assets>
+        <a-asset-item id="ac-obj" src="assets/obj/cookie.obj"></a-asset-item>
+        <a-asset-item id="ac-mtl" src="assets/obj/cookie.mtl"></a-asset-item>
+        <a-asset-item id="acshooshoo-mtl" src="assets/obj/acshooshoo.mtl"></a-asset-item>
+        <a-asset-item id="acjacob-mtl" src="assets/obj/acjacob.mtl"></a-asset-item>
+        <a-asset-item id="accannabis-mtl" src="assets/obj/acscannabis.mtl"></a-asset-item>
+        <a-asset-item id="actroy-mtl" src="assets/obj/actroy.mtl"></a-asset-item>
+    	<a-mixin id="righthand" rotation="0 -90 -130" position="-.08 -.08 -.1" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+    </a-assets>
+
+    <a-entity obj-model='obj: #ac-obj; mtl: #ac-mtl' position="0 1.25 0" rotation="0 0 0" scale=".1 .1 .1" visible></a-entity>
+    <a-entity obj-model='obj: #ac-obj; mtl: #acshooshoo-mtl' position="-1 1.5 0" rotation="0 0 0" scale=".1 .1 .1" visible></a-entity>
+    <a-entity obj-model='obj: #ac-obj; mtl: #acjacob-mtl' position="-2 1.5 0" rotation="0 0 0" scale=".1 .1 .1" visible></a-entity>
+    <a-entity obj-model='obj: #ac-obj; mtl: #accannabis-mtl' position="1 1.5 0" rotation="0 0 0" scale=".1 .1 .1" visible></a-entity>
+    <a-entity obj-model='obj: #ac-obj; mtl: #actroy-mtl' position="2 1.5 0" rotation="0 0 0" scale=".1 .1 .1" visible></a-entity>
+
+    
+</a-scene>
+</body>
+</html>	
