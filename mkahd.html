@@ -52,22 +52,17 @@
 
 <!--  sync-system="author: meeka; app: mkahead" -->
 
-<a-scene altspace='fullspace:true' sync-system="author: meeka; app: mkahead">
+<a-scene altspace='fullspace:true' sync-system="author: meeka; app: mkahead;">
 
     <a-assets>
     	<a-asset-item id="mkahead-obj" src="assets/obj/mkahead.obj"></a-asset-item>
-        <a-asset-item id="mkahead1-obj" src="assets/obj/mkahead1.obj"></a-asset-item>
     	<a-asset-item id="mkahead-mtl" src="assets/obj/mkahead.mtl"></a-asset-item>
-        <a-asset-item id="mkahead1-mtl" src="assets/obj/mkahead1.mtl"></a-asset-item>
-        <a-mixin id="mkahead1" obj-model="obj: #mkahead1-obj; mtl: #mkahead1-mtl" collapse-model scale="1 1 1"></a-mixin>
         <a-mixin id="mkahead" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
-        <a-mixin id="head" rotation="0 180 0" position="0 .1 0" n-skeleton-parent="part: head; side: center; removeLast: true;" sync sync-n-skeleton-parent></a-mixin>
+        <a-mixin id="head" rotation="0 180 0" position="0 .1 0" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
         <a-mixin id="button" geometry="primitive: cylinder" material="color: red">
     </a-assets>
         <a-entity id="app" position="1 1 0" rotation="0 180 0">
-        <a-entity id="mkhead-on" mixin="button" instantiator="on: click; group: mkahead; mixin: mkahead head; removeLast: true" position="0 1.5 0" rotation="0 90 90" scale=".1 .1 .1"></a-entity>
-        <a-entity id="mkhead1-on" mixin="button" instantiator="on: click; group: mkahead1; mixin: mkahead1 head; removeLast: true" position=".5 1.5 0" rotation="0 90 90" scale=".1 .1 .1"></a-entity>
-
+        <a-entity id="mkhead-on" mixin="button" instantiator="on: click; group: mkahead; mixin: mkahead head; removeLast: true; instantiatorId: mkhead-on;" position="0 1.5 0" rotation="0 90 90" scale=".1 .1 .1"></a-entity>
 
         <a-entity n-text='text: Do not click this button.\n It will crash your game.\n Every now and then, however, there is an offchance it could make you fabulous, possibly.; fontSize: 1; width: 2;' position="0 1 0"></a-entity>
         </a-entity>
