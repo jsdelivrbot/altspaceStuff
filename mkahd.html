@@ -49,25 +49,20 @@
 
 
 <body>
-<a-scene altspace='fullspace:true' sync-system="author: meeka; app: cookies">
+
+<!--  sync-system="author: meeka; app: mkahead" -->
+
+<a-scene altspace='fullspace:true'>
 
     <a-assets>
-        <a-asset-item id="ac-obj" src="assets/obj/cookie.obj"></a-asset-item>
-        <a-asset-item id="ac-mtl" src="assets/obj/cookie.mtl"></a-asset-item>
-        <a-asset-item id="acshooshoo-mtl" src="assets/obj/acshooshoo.mtl"></a-asset-item>
-        <a-asset-item id="acjacob-mtl" src="assets/obj/acjacob.mtl"></a-asset-item>
-        <a-asset-item id="accannabis-mtl" src="assets/obj/accannabis.mtl"></a-asset-item>
-        <a-asset-item id="actroy-mtl" src="assets/obj/actroy.mtl"></a-asset-item>
-    	<a-mixin id="righthand" rotation="0 -90 -130" position="-.08 -.08 -.1" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+    	<a-asset-item id="mkahead-obj" src="assets/obj/mkahead.obj"></a-asset-item>
+    	<a-asset-item id="mkahead-mtl" src="assets/obj/mkahead.mtl"></a-asset-item>
+        <a-mixin id="mkahead" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
+        <a-mixin id="head" rotation="0 0 0" position="0 0 0" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
     </a-assets>
 
-    <a-entity obj-model='obj: #ac-obj; mtl: #ac-mtl' position="0 1.5 0" rotation="75 0 0" scale=".1 .1 .1" visible></a-entity>
-    <a-entity obj-model='obj: #ac-obj; mtl: #acshooshoo-mtl' position="-.5 1.5 0" rotation="75 0 0" scale=".1 .1 .1" visible></a-entity>
-    <a-entity obj-model='obj: #ac-obj; mtl: #acjacob-mtl' position="-1 1.5 0" rotation="75 0 0" scale=".1 .1 .1" visible></a-entity>
-    <a-entity obj-model='obj: #ac-obj; mtl: #accannabis-mtl' position=".5 1.5 0" rotation="75 0 0" scale=".1 .1 .1" visible></a-entity>
-    <a-entity obj-model='obj: #ac-obj; mtl: #actroy-mtl' position="1 1.5 0" rotation="75 0 0" scale=".1 .1 .1" visible></a-entity>
+    	<a-entity id="mkahead-on" mixin="mkahead" instantiator="on: click; group: mkahead; mixin: mkahead head" position="0 1 0" rotation="0 0 0" scale="1 1 1"></a-entity>
 
-    
 </a-scene>
 </body>
 </html>	
