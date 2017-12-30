@@ -61,7 +61,7 @@
         <a-mixin id="head" rotation="0 180 0" position="0 .1 0" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
         <a-mixin id="button" geometry="primitive: cylinder" material="color: red">
     </a-assets>
-        <a-entity id="app">
+        <a-entity id="app" position="-1 1 0" rotation="0 180 0">
         <a-entity id="mkhead-on" mixin="button" instantiator="on: click; group: mkahead; mixin: mkahead head" position="0 1.5 0" rotation="0 90 90" scale=".1 .1 .1"></a-entity>
 
         <a-entity n-text='text: Do not click this button.\n It will crash your game.\n Every now and then, however, there is an offchance it could make you fabulous, possibly.; fontSize: 1; width: 2;' position="0 1 0"></a-entity>
