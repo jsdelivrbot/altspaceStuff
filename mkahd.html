@@ -47,24 +47,39 @@
 	</script>
 </head>
 
-
 <body>
-
-<!--  sync-system="author: meeka; app: mkahead" -->
-
 <a-scene altspace='fullspace:true' sync-system="author: meeka; app: mkahead;">
 
     <a-assets>
+    	<!--Body Assets-->
     	<a-asset-item id="mkahead-obj" src="assets/obj/mkahead.obj"></a-asset-item>
     	<a-asset-item id="mkahead-mtl" src="assets/obj/mkahead.mtl"></a-asset-item>
-        <a-mixin id="mkahead" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
-        <a-mixin id="head" rotation="0 180 0" position="0 .1 0" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
-        <a-mixin id="button" geometry="primitive: cylinder" material="color: red">
-    </a-assets>
-        <a-entity id="app" position="1 1 0" rotation="0 180 0">
-        <a-entity id="mkhead-on" mixin="button" instantiator="on: click; group: mkahead; mixin: mkahead head; removeLast: true; instantiatorId: mkhead-on;" position="0 1.5 0" rotation="0 90 90" scale=".1 .1 .1"></a-entity>
+    	<a-asset-item id="mkarh-obj" src="assets/obj/mkarh.obj"></a-asset-item>
+    	<a-asset-item id="mkarh-mtl" src="assets/obj/mkarh.mtl"></a-asset-item>
+    	<a-asset-item id="mkalh-obj" src="assets/obj/mkalh.obj"></a-asset-item>
+    	<a-asset-item id="mkalh-mtl" src="assets/obj/mkalh.mtl"></a-asset-item>
 
-        <a-entity n-text='text: Do not click this button.\n It will crash your game.\n Every now and then, however, there is an offchance it could make you fabulous, possibly.; fontSize: 1; width: 2;' position="0 1 0"></a-entity>
+    	<!--Body Mixins-->
+        <a-mixin id="mkahead" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
+        <a-mixin id="mkarh" obj-model="obj: #mkarh-obj; mtl: #mkarh-mtl" collapse-model scale="1 1 1"></a-mixin>
+        <a-mixin id="mkalh" obj-model="obj: #mkalh-obj; mtl: #mkalh-mtl" collapse-model scale="1 1 1"></a-mixin>
+
+        <!--Positioning-->
+        <a-mixin id="head" rotation="0 180 0" position="0 .1 0" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
+        <a-mixin id="righthand" rotation="90 180 0" position="-.03 -.015 -.25" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+        <a-mixin id="lefthand" rotation="90 180 0" position=".04 -.010 -.25" n-skeleton-parent="part: hand; side: left;" sync sync-n-skeleton-parent></a-mixin>
+
+        <!--Selector(s)-->
+        <a-mixin id="button" geometry="primitive: cylinder" material="color: red">
+
+    </a-assets>
+
+        <a-entity id="app" position="1 1 0" rotation="0 180 0">
+        	<a-entity id="mkhead-on" mixin="button" instantiator="on: click; group: mkahead; mixin: mkahead head;" position="0 1.5 0" rotation="0 90 90" scale=".1 .1 .1"></a-entity>
+        	<a-entity id="mkarh-on" mixin="button" instantiator="on: click; group: mkarh; mixin: mkarh righthand;" position=".25 1.5 0" rotation="0 90 90" scale=".1 .1 .1"></a-entity>
+        	<a-entity id="mkalh-on" mixin="button" instantiator="on: click; group: mkalh; mixin: mkalh lefthand;" position="-.25 1.5 0" rotation="0 90 90" scale=".1 .1 .1"></a-entity>
+
+       		<a-entity n-text='text: Do not click this button.\n It will crash your game.\n Every now and then, however, there is an offchance it could make you fabulous, possibly.; fontSize: 1; width: 2;' position="0 1 0"></a-entity>
         </a-entity>
 </a-scene>
 </body>
