@@ -2,6 +2,7 @@
 <head>
 	<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
 	<script src="https://cdn.rawgit.com/AltspaceVR/AltspaceSDK/v2.6.1/dist/altspace.min.js"></script>
+	<script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
 
 	<script>
 	// Gets tracking and stuff. Maybe.
@@ -52,82 +53,180 @@
 
     <a-assets>
     	<!--Meeka Body Assets-->
-    	<a-asset-item id="mkahead-obj" src="assets/obj/mkahead.obj"></a-asset-item>
-    	<a-asset-item id="mkahead-mtl" src="assets/obj/mkahead.mtl"></a-asset-item>
-    	<a-asset-item id="mkarh-obj" src="assets/obj/mkarh.obj"></a-asset-item>
-    	<a-asset-item id="mkarh-mtl" src="assets/obj/mkarh.mtl"></a-asset-item>
-    	<a-asset-item id="mkalh-obj" src="assets/obj/mkalh.obj"></a-asset-item>
-    	<a-asset-item id="mkalh-mtl" src="assets/obj/mkalh.mtl"></a-asset-item>
+    		<a-asset-item id="mkahead-obj" src="assets/obj/mkahead.obj"></a-asset-item>
+    		<a-asset-item id="mkahead-mtl" src="assets/obj/mkahead.mtl"></a-asset-item>
+    		<a-asset-item id="mkarh-obj" src="assets/obj/mkarh.obj"></a-asset-item>
+    		<a-asset-item id="mkarh-mtl" src="assets/obj/mkarh.mtl"></a-asset-item>
+    		<a-asset-item id="mkalh-obj" src="assets/obj/mkalh.obj"></a-asset-item>
+    		<a-asset-item id="mkalh-mtl" src="assets/obj/mkalh.mtl"></a-asset-item>
 
     	<!--Hulk Body Assets-->
-    	<a-asset-item id="hmask-obj" src="assets/obj/hulkmask.obj"></a-asset-item>
-    	<a-asset-item id="hmask-mtl" src="assets/obj/hulkmask.mtl"></a-asset-item>
-    	<a-asset-item id="hulkrh-obj" src="assets/obj/hulkrh.obj"></a-asset-item>
-    	<a-asset-item id="hulkrh-mtl" src="assets/obj/hulkrh.mtl"></a-asset-item>
-    	<a-asset-item id="hulklh-obj" src="assets/obj/hulklh.obj"></a-asset-item>
-    	<a-asset-item id="hulklh-mtl" src="assets/obj/hulklh.mtl"></a-asset-item>
+    		<a-asset-item id="hmask-obj" src="assets/obj/hulkmask.obj"></a-asset-item>
+    		<a-asset-item id="hmask-mtl" src="assets/obj/hulkmask.mtl"></a-asset-item>
+    		<a-asset-item id="hulkrh-obj" src="assets/obj/hulkrh.obj"></a-asset-item>
+    		<a-asset-item id="hulkrh-mtl" src="assets/obj/hulkrh.mtl"></a-asset-item>
+    		<a-asset-item id="hulklh-obj" src="assets/obj/hulklh.obj"></a-asset-item>
+    		<a-asset-item id="hulklh-mtl" src="assets/obj/hulklh.mtl"></a-asset-item>
 
     	<!--Meeka Body Mixins-->
-        <a-mixin id="mkahead" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
-        <a-mixin id="mkarh" obj-model="obj: #mkarh-obj; mtl: #mkarh-mtl" collapse-model scale="1 1 1"></a-mixin>
-        <a-mixin id="mkalh" obj-model="obj: #mkalh-obj; mtl: #mkalh-mtl" collapse-model scale="1 1 1"></a-mixin>
+        	<a-mixin id="mkahead" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
+        	<a-mixin id="mkarh" obj-model="obj: #mkarh-obj; mtl: #mkarh-mtl" collapse-model scale="1 1 1"></a-mixin>
+        	<a-mixin id="mkalh" obj-model="obj: #mkalh-obj; mtl: #mkalh-mtl" collapse-model scale="1 1 1"></a-mixin>
 
         <!--Hulk Body Mixins-->
-        <a-mixin id="hulkmask" obj-model="obj: #hmask-obj; mtl: #hmask-mtl" collapse-model scale="1 1 1"></a-mixin>
-        <a-mixin id="hulkrh" obj-model="obj: #hulkrh-obj; mtl: #hulkrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
-        <a-mixin id="hulklh" obj-model="obj: #hulklh-obj; mtl: #hulklh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+        	<a-mixin id="hulkmask" obj-model="obj: #hmask-obj; mtl: #hmask-mtl" collapse-model scale="1 1 1"></a-mixin>
+        	<a-mixin id="hulkrh" obj-model="obj: #hulkrh-obj; mtl: #hulkrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+        	<a-mixin id="hulklh" obj-model="obj: #hulklh-obj; mtl: #hulklh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
 
         <!--Meeka Positioning-->
-        <a-mixin id="mkheadpos" rotation="0 180 0" position="0 .075 0" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
-        <a-mixin id="mkrhpos" rotation="90 180 0" position="-.03 -.015 -.25" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
-        <a-mixin id="mklhpos" rotation="90 180 0" position=".04 -.010 -.25" n-skeleton-parent="part: hand; side: left;" sync sync-n-skeleton-parent></a-mixin>
+        	<a-mixin id="mkheadpos" rotation="0 180 0" position="0 .075 0" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
+        	<a-mixin id="mkrhpos" rotation="90 180 0" position="-.03 -.015 -.25" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+        	<a-mixin id="mklhpos" rotation="90 180 0" position=".04 -.010 -.25" n-skeleton-parent="part: hand; side: left;" sync sync-n-skeleton-parent></a-mixin>
 
         <!--Hulk Positioning-->
-        <a-mixin id="hulkheadpos" rotation="0 180 0" position="0 -.025 -.05" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
-        <a-mixin id="hulkrhpos" rotation="90 180 0" position="-.03 -.015 -.07" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
-        <a-mixin id="hulklhpos" rotation="90 180 0" position=".04 -.010 -.07" n-skeleton-parent="part: hand; side: left;" sync sync-n-skeleton-parent></a-mixin>
+        	<a-mixin id="hulkheadpos" rotation="0 180 0" position="0 -.025 -.05" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
+        	<a-mixin id="hulkrhpos" rotation="90 180 0" position="-.03 -.015 -.07" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+        	<a-mixin id="hulklhpos" rotation="90 180 0" position=".04 -.010 -.07" n-skeleton-parent="part: hand; side: left;" sync sync-n-skeleton-parent></a-mixin>
 
         <!--Selector(s)-->
-        <a-mixin id="redbutton" geometry="primitive: cylinder" material="color: red">
-       	<a-mixin id="grnbutton" geometry="primitive: cylinder" material="color: green">
+        	<a-mixin id="redbutton" geometry="primitive: cylinder" material="color: red">
+       		<a-mixin id="grnbutton" geometry="primitive: cylinder" material="color: green">
 
-        <a-mixin id="mkahead-button" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
-        <a-mixin id="mkalh-button" obj-model="obj: #mkarh-obj; mtl: #mkarh-mtl" collapse-model scale="1 1 1"></a-mixin>
-        <a-mixin id="mkarh-button" obj-model="obj: #mkalh-obj; mtl: #mkalh-mtl" collapse-model scale="1 1 1"></a-mixin>
+        	<a-mixin id="mkahead-button" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
+        	<a-mixin id="mkalh-button" obj-model="obj: #mkarh-obj; mtl: #mkarh-mtl" collapse-model scale="1 1 1"></a-mixin>
+        	<a-mixin id="mkarh-button" obj-model="obj: #mkalh-obj; mtl: #mkalh-mtl" collapse-model scale="1 1 1"></a-mixin>
 
-        <a-mixin id="hulkmask-button" obj-model="obj: #hmask-obj; mtl: #hmask-mtl" collapse-model scale="1 1 1"></a-mixin>
-        <a-mixin id="hulklh-button" obj-model="obj: #hulkrh-obj; mtl: #hulkrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
-        <a-mixin id="hulkrh-button" obj-model="obj: #hulklh-obj; mtl: #hulklh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+        	<a-mixin id="hulkmask-button" obj-model="obj: #hmask-obj; mtl: #hmask-mtl" collapse-model scale="1 1 1"></a-mixin>
+        	<a-mixin id="hulklh-button" obj-model="obj: #hulkrh-obj; mtl: #hulkrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+        	<a-mixin id="hulkrh-button" obj-model="obj: #hulklh-obj; mtl: #hulklh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
 
     </a-assets>
 
-        <a-entity id="app" position="1 1 0" rotation="0 180 0" n-cockpit-parent>
+        <a-entity id="app" position="1 1 0" rotation="0 180 0">
 
-        	<!--Meeka Head and Hands-->
-        	<a-entity id="mkhead-on" mixin="mkahead-button" instantiator="on: click; group: headmask; mixin: mkahead mkheadpos;" position="-.25 1.5 0" rotation="-75 0 0" scale=".5 .5 .5">
-        		<a-animation to='-75 360 0' easing='linear' dur='10000' repeat='indefinite'></a-animation>
+        	<!--Meeka Head and Hands-->	
+        	<a-entity 
+        		id="mkhead-on" 
+        		mixin="mkahead-button" 
+        		instantiator="
+        			on: click; 
+        			group: headmask; 
+        			mixin: mkahead mkheadpos;" 
+        		position="-.25 1.5 0" 
+        		rotation="-50 0 0" 
+        		scale=".5 .5 .5"
+        		event-set__mouseenter="scale: .6 .6 .6"
+           		event-set__mouseleave="scale: .5 .5 .5">
+        		<a-animation 
+        			to='-50 360 0' 
+        			easing='linear' 
+        			dur='10000' 
+        			repeat='indefinite'>
+                </a-animation>
         	</a-entity>
-        	<a-entity id="mkarh-on" mixin="mkarh-button" instantiator="on: click; group: righthand; mixin: mkarh mkrhpos;" position=".25 1.5 0" rotation="-75 0 0" scale=".5 .5 .5">
-        		<a-animation to='-75 360 0' easing='linear' dur='10000' repeat='indefinite'></a-animation>
+
+        	<a-entity 
+        		id="mkarh-on" 
+        		mixin="mkarh-button" 
+        		instantiator="
+        			on: click; 
+        			group: righthand; 
+        			mixin: mkarh mkrhpos;" 
+        		position=".25 1.5 0" 
+        		rotation="-50 0 0" 
+        		scale=".6 .6 .6"
+        		event-set__mouseenter="scale: .7 .7 .7"
+           		event-set__mouseleave="scale: .6 .6 .6">>
+        		<a-animation 
+        			to='-50 360 0' 
+        			easing='linear' 
+        			dur='10000' 
+        			repeat='indefinite'>
+        		</a-animation>
         	</a-entity>
-        	<a-entity id="mkalh-on" mixin="mkalh-button" instantiator="on: click; group: lefthand; mixin: mkalh mklhpos;" position="0 1.5 0" rotation="-75 0 0" scale=".5 .5 .5">
-        		<a-animation to='-75 360 0' easing='linear' dur='10000' repeat='indefinite'></a-animation>
+
+        	<a-entity 
+        		id="mkalh-on" 
+        		mixin="mkalh-button" 
+        		instantiator="
+        			on: click; 
+        			group: lefthand; 
+        			mixin: mkalh mklhpos;" 
+        		position="0 1.5 0" 
+        		rotation="-50 0 0" 
+        		scale=".6 .6 .6"
+        		event-set__mouseenter="scale: .7 .7 .7"
+           		event-set__mouseleave="scale: .6 .6 .6">
+        		<a-animation 
+        			to='-50 360 0' 
+        			easing='linear' 
+        			dur='10000' 
+        			repeat='indefinite'>
+        		</a-animation>
         	</a-entity>
 
         	<!--Hulk Mask and Hands-->
-        	<a-entity id="hulkhead-on" mixin="hulkmask-button" instantiator="on: click; group: headmask; mixin: hulkmask hulkheadpos;" position="-.25 1.2 0" rotation="-75 0 0" scale=".6 .6 .6">
-        			<a-animation to='-75 360 0' easing='linear' dur='10000' repeat='indefinite'></a-animation>
+        	<a-entity 
+        		id="hulkhead-on" 
+        		mixin="hulkmask-button" 
+        		instantiator="
+        			on: click; 
+        			group: headmask; 
+        			mixin: hulkmask hulkheadpos;" 
+        		position="-.25 1.2 0" 
+        		rotation="-50 0 0" 
+        		scale=".6 .6 .6"
+        		event-set__mouseenter="scale: .7 .7 .7"
+           		event-set__mouseleave="scale: .6 .6 .6">
+        		<a-animation 
+        			to='-50 360 0' 
+        			easing='linear' 
+        			dur='10000' 
+        			repeat='indefinite'>
+        		</a-animation>
         	</a-entity>
-        	<a-entity id="hulkrh-on" mixin="hulkrh-button" instantiator="on: click; group: righthand; mixin: hulkrh hulkrhpos;" position=".25 1.2 0" rotation="-75 0 0" scale=".4 .4 .4">
-        			<a-animation to='-75 360 0' easing='linear' dur='10000' repeat='indefinite'></a-animation>
+
+        	<a-entity 
+        		id="hulkrh-on" 
+        		mixin="hulkrh-button" 
+        		instantiator="
+        			on: click; 
+        			group: righthand; 
+        			mixin: hulkrh hulkrhpos;" 
+        		position=".25 1.2 0" 
+        		rotation="-50 0 0" 
+        		scale=".4 .4 .4"
+        		event-set__mouseenter="scale: .5 .5 .5"
+           		event-set__mouseleave="scale: .4 .4 .4">
+        		<a-animation 
+        			to='-50 360 0' 
+        			easing='linear' 
+        			dur='10000' 
+        			repeat='indefinite'>
+        		</a-animation>
         	</a-entity>
-        	<a-entity id="hulklh-on" mixin="hulklh-button" instantiator="on: click; group: lefthand; mixin: hulklh hulklhpos;" position="0 1.2 0" rotation="-75 0 0" scale=".4 .4 .4">
-        			<a-animation to='-75 360 0' easing='linear' dur='10000' repeat='indefinite'></a-animation>
+
+        	<a-entity
+        		id="hulklh-on" 
+        		mixin="hulklh-button" 
+        		instantiator="on: click; group: lefthand; mixin: hulklh hulklhpos;" 
+        		position="0 1.2 0" 
+        		rotation="-50 0 0" 
+        		scale=".4 .4 .4"
+        		event-set__mouseenter="scale: .5 .5 .5"
+           		event-set__mouseleave="scale: .4 .4 .4">
+        		<a-animation 
+        			to='-50 360 0' 
+        			easing='linear' 
+        			dur='10000' 
+        			repeat='indefinite'>
+        		</a-animation>
         	</a-entity>
 
        		<!--<a-entity n-text='text: Do not click this button.\n It will crash your game.\n Every now and then, however, there is an offchance it could make you fabulous, possibly.; fontSize: 1; width: 2;' position="0 1 0"></a-entity>-->
 
         </a-entity>
+
 </a-scene>
 </body>
 </html>	
