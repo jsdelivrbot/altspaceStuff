@@ -68,6 +68,14 @@
     		<a-asset-item id="hulklh-obj" src="assets/obj/hulklh.obj"></a-asset-item>
     		<a-asset-item id="hulklh-mtl" src="assets/obj/hulklh.mtl"></a-asset-item>
 
+        <!--Hulk Body Assets-->
+            <a-asset-item id="obm-obj" src="assets/obj/obmhead.obj"></a-asset-item>
+            <a-asset-item id="obm-mtl" src="assets/obj/obmhead.mtl"></a-asset-item>
+            <a-asset-item id="obmrh-obj" src="assets/obj/obmrh.obj"></a-asset-item>
+            <a-asset-item id="obmrh-mtl" src="assets/obj/obmrh.mtl"></a-asset-item>
+            <a-asset-item id="obmlh-obj" src="assets/obj/obmlh.obj"></a-asset-item>
+            <a-asset-item id="obmlh-mtl" src="assets/obj/obmlh.mtl"></a-asset-item>
+
     	<!--Meeka Body Mixins-->
         	<a-mixin id="mkahead" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
         	<a-mixin id="mkarh" obj-model="obj: #mkarh-obj; mtl: #mkarh-mtl" collapse-model scale="1 1 1"></a-mixin>
@@ -78,6 +86,11 @@
         	<a-mixin id="hulkrh" obj-model="obj: #hulkrh-obj; mtl: #hulkrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
         	<a-mixin id="hulklh" obj-model="obj: #hulklh-obj; mtl: #hulklh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
 
+        <!--Obama Body Mixins-->
+            <a-mixin id="obmhead" obj-model="obj: #obm-obj; mtl: #obm-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+            <a-mixin id="obmrh" obj-model="obj: #obmrh-obj; mtl: #obmrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+            <a-mixin id="obmlh" obj-model="obj: #obmlh-obj; mtl: #obmlh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+
         <!--Meeka Positioning-->
         	<a-mixin id="mkheadpos" rotation="0 180 0" position="0 .075 0" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
         	<a-mixin id="mkrhpos" rotation="90 180 0" position="-.03 -.015 -.25" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
@@ -87,6 +100,11 @@
         	<a-mixin id="hulkheadpos" rotation="0 180 0" position="0 -.025 -.05" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
         	<a-mixin id="hulkrhpos" rotation="90 180 0" position="-.03 -.015 -.07" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
         	<a-mixin id="hulklhpos" rotation="90 180 0" position=".04 -.010 -.07" n-skeleton-parent="part: hand; side: left;" sync sync-n-skeleton-parent></a-mixin>
+
+        <!--Obama Positioning-->
+            <a-mixin id="obmheadpos" rotation="0 180 0" position="0 -.025 -.05" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
+            <a-mixin id="obmrhpos" rotation="90 180 0" position="-.03 -.015 -.1" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+            <a-mixin id="obmlhpos" rotation="90 180 0" position=".03 -.015 -.1" n-skeleton-parent="part: hand; side: left;" sync sync-n-skeleton-parent></a-mixin>
 
         <!--Selector(s)-->
         	<a-mixin id="redbutton" geometry="primitive: cylinder" material="color: red">
@@ -99,6 +117,10 @@
         	<a-mixin id="hulkmask-button" obj-model="obj: #hmask-obj; mtl: #hmask-mtl" collapse-model scale="1 1 1"></a-mixin>
         	<a-mixin id="hulklh-button" obj-model="obj: #hulkrh-obj; mtl: #hulkrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
         	<a-mixin id="hulkrh-button" obj-model="obj: #hulklh-obj; mtl: #hulklh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+
+            <a-mixin id="obmmask-button" obj-model="obj: #obm-obj; mtl: #obm-mtl" collapse-model scale="1 1 1"></a-mixin>
+            <a-mixin id="obmlh-button" obj-model="obj: #obmrh-obj; mtl: #obmrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+            <a-mixin id="obmrh-button" obj-model="obj: #obmlh-obj; mtl: #obmlh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
 
     </a-assets>
 
@@ -222,6 +244,64 @@
         			repeat='indefinite'>
         		</a-animation>
         	</a-entity>
+
+            <!--Obama and Hands-->
+            <a-entity 
+                id="obmhead-on" 
+                mixin="obmmask-button" 
+                instantiator="
+                    on: click; 
+                    group: headmask; 
+                    mixin: obmhead obmheadpos;" 
+                position="-.25 .9 0" 
+                rotation="-50 0 0" 
+                scale=".5 .5 .5"
+                event-set__mouseenter="scale: .6 .6 .6"
+                event-set__mouseleave="scale: .5 .5 .5">
+                <a-animation 
+                    to='-50 360 0' 
+                    easing='linear' 
+                    dur='10000' 
+                    repeat='indefinite'>
+                </a-animation>
+            </a-entity>
+
+            <a-entity 
+                id="obmrh-on" 
+                mixin="obmrh-button" 
+                instantiator="
+                    on: click; 
+                    group: righthand; 
+                    mixin: obmrh obmrhpos;" 
+                position=".25 .9 0" 
+                rotation="-50 0 0" 
+                scale=".5 .5 .5"
+                event-set__mouseenter="scale: .6 .6 .6"
+                event-set__mouseleave="scale: .5 .5 .5">
+                <a-animation 
+                    to='-50 360 0' 
+                    easing='linear' 
+                    dur='10000' 
+                    repeat='indefinite'>
+                </a-animation>
+            </a-entity>
+
+            <a-entity
+                id="obmlh-on" 
+                mixin="obmlh-button" 
+                instantiator="on: click; group: lefthand; mixin: obmlh obmlhpos;" 
+                position="0 .9 0" 
+                rotation="-50 0 0" 
+                scale=".5 .5 .5"
+                event-set__mouseenter="scale: .6 .6 .6"
+                event-set__mouseleave="scale: .5 .5 .5">
+                <a-animation 
+                    to='-50 360 0' 
+                    easing='linear' 
+                    dur='10000' 
+                    repeat='indefinite'>
+                </a-animation>
+            </a-entity>
 
        		<!--<a-entity n-text='text: Do not click this button.\n It will crash your game.\n Every now and then, however, there is an offchance it could make you fabulous, possibly.; fontSize: 1; width: 2;' position="0 1 0"></a-entity>-->
 
