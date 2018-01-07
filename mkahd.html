@@ -76,6 +76,16 @@
             <a-asset-item id="obmlh-obj" src="assets/obj/obmlh.obj"></a-asset-item>
             <a-asset-item id="obmlh-mtl" src="assets/obj/obmlh.mtl"></a-asset-item>
 
+        <!--Knuckles Uganda-->
+            <a-asset-item id="ugk-obj" src="assets/obj/ugkhead.obj"></a-asset-item>
+            <a-asset-item id="ugk-mtl" src="assets/obj/ugkhead.mtl"></a-asset-item>
+            <a-asset-item id="ugkrh-obj" src="assets/obj/ugkrh.obj"></a-asset-item>
+            <a-asset-item id="ugkrh-mtl" src="assets/obj/ugkrh.mtl"></a-asset-item>
+            <a-asset-item id="ugklh-obj" src="assets/obj/ugklh.obj"></a-asset-item>
+            <a-asset-item id="ugklh-mtl" src="assets/obj/ugklh.mtl"></a-asset-item>
+            <a-asset-item id="ugkbody-obj" src="assets/obj/ugkbody.obj"></a-asset-item>
+            <a-asset-item id="ugkbody-mtl" src="assets/obj/ugkbody.mtl"></a-asset-item>
+
     	<!--Meeka Body Mixins-->
         	<a-mixin id="mkahead" obj-model="obj: #mkahead-obj; mtl: #mkahead-mtl" collapse-model scale="1 1 1"></a-mixin>
         	<a-mixin id="mkarh" obj-model="obj: #mkarh-obj; mtl: #mkarh-mtl" collapse-model scale="1 1 1"></a-mixin>
@@ -91,6 +101,12 @@
             <a-mixin id="obmrh" obj-model="obj: #obmrh-obj; mtl: #obmrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
             <a-mixin id="obmlh" obj-model="obj: #obmlh-obj; mtl: #obmlh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
 
+        <!--Knuckles Uganda Mixins-->
+            <a-mixin id="ugkbody" obj-model="obj: #ugkbody-obj; mtl: #ugkbody-mtl" collapse-model scale=".6 .6 .6"></a-mixin>
+            <a-mixin id="ugkhead" obj-model="obj: #ugk-obj; mtl: #ugk-mtl" collapse-model scale=".6 .6 .6"></a-mixin>
+            <a-mixin id="ugkrh" obj-model="obj: #ugkrh-obj; mtl: #ugkrh-mtl" collapse-model scale=".5 .5 .5"></a-mixin>
+            <a-mixin id="ugklh" obj-model="obj: #ugklh-obj; mtl: #ugklh-mtl" collapse-model scale=".5 .5 .5"></a-mixin>
+
         <!--Meeka Positioning-->
         	<a-mixin id="mkheadpos" rotation="0 180 0" position="0 .075 0" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
         	<a-mixin id="mkrhpos" rotation="90 180 0" position="-.03 -.015 -.25" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
@@ -105,6 +121,12 @@
             <a-mixin id="obmheadpos" rotation="0 180 0" position="0 -.1 .065" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
             <a-mixin id="obmrhpos" rotation="90 180 0" position="-.03 -.015 -.14" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
             <a-mixin id="obmlhpos" rotation="90 180 0" position=".03 -.015 -.139" n-skeleton-parent="part: hand; side: left;" sync sync-n-skeleton-parent></a-mixin>
+
+        <!--Knuckles Uganda Positioning UD  LR  FB-->
+            <a-mixin id="ugkheadpos" rotation="0 180 0" position="0 -.1 .065" n-skeleton-parent="part: head; side: center;" sync sync-n-skeleton-parent></a-mixin>
+            <a-mixin id="ugkrhpos" rotation="90 180 0" position="-.01 .01 -.05" n-skeleton-parent="part: hand; side: right;" sync sync-n-skeleton-parent></a-mixin>
+            <a-mixin id="ugklhpos" rotation="90 180 0" position=".03 .025 -.04" n-skeleton-parent="part: hand; side: left;" sync sync-n-skeleton-parent></a-mixin>
+            <a-mixin id="ugkbodypos" rotation="0 180 0" position=".03 -.2 .1" n-skeleton-parent="part: spine; side: center;" sync sync-n-skeleton-parent></a-mixin>
 
         <!--Selector(s)-->
         	<a-mixin id="redbutton" geometry="primitive: cylinder" material="color: red">
@@ -122,9 +144,14 @@
             <a-mixin id="obmlh-button" obj-model="obj: #obmrh-obj; mtl: #obmrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
             <a-mixin id="obmrh-button" obj-model="obj: #obmlh-obj; mtl: #obmlh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
 
+            <a-mixin id="ugkbody-button" obj-model="obj: #ugkbody-obj; mtl: #ugkbody-mtl" collapse-model scale="1 1 1"></a-mixin>
+            <a-mixin id="ugkhead-button" obj-model="obj: #ugk-obj; mtl: #ugk-mtl" collapse-model scale="1 1 1"></a-mixin>
+            <a-mixin id="ugklh-button" obj-model="obj: #ugkrh-obj; mtl: #ugkrh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+            <a-mixin id="ugkrh-button" obj-model="obj: #ugklh-obj; mtl: #ugklh-mtl" collapse-model scale=".7 .7 .7"></a-mixin>
+
     </a-assets>
 
-        <a-entity id="app" position="1 1 0" rotation="0 180 0">
+        <a-entity id="app" position="1 1.3 0" rotation="0 180 0">
 
         	<!--Meeka Head and Hands-->	
         	<a-entity 
@@ -303,7 +330,86 @@
                 </a-animation>
             </a-entity>
 
-            <a-entity position="10 1.5 18" scale="4 4 4" rotation="0 0 0" n-layout-browser="url: http://hah.altvr.com/play; isEnclosure: true"></a-entity>
+            <!--Uganda Knuckles Selectors-->
+
+            <a-entity 
+                id="ugkbody-on" 
+                mixin="ugkbody-button" 
+                instantiator="
+                    on: click; 
+                    group: body; 
+                    mixin: ugkbody ugkbodypos;" 
+                position=".6 .6 0" 
+                rotation="-50 0 0" 
+                scale=".35 .35 .35"
+                event-set__mouseenter="scale: .45 .45 .45"
+                event-set__mouseleave="scale: .35 .35 .35">
+                <a-animation 
+                    to='-50 360 0' 
+                    easing='linear' 
+                    dur='10000' 
+                    repeat='indefinite'>
+                </a-animation>
+            </a-entity>
+
+            <a-entity 
+                id="ugkhead-on" 
+                mixin="ugkhead-button" 
+                instantiator="
+                    on: click; 
+                    group: headmask; 
+                    mixin: ugkhead ugkheadpos;" 
+                position="-.25 .6 0" 
+                rotation="-50 0 0" 
+                scale=".35 .35 .35"
+                event-set__mouseenter="scale: .4 .4 .4"
+                event-set__mouseleave="scale: .3 .3 .3">
+                <a-animation 
+                    to='-50 360 0' 
+                    easing='linear' 
+                    dur='10000' 
+                    repeat='indefinite'>
+                </a-animation>
+            </a-entity>
+
+            <a-entity 
+                id="ugkrh-on" 
+                mixin="ugkrh-button" 
+                instantiator="
+                    on: click; 
+                    group: righthand; 
+                    mixin: ugkrh ugkrhpos;" 
+                position=".25 .6 0" 
+                rotation="-50 0 0" 
+                scale=".5 .5 .5"
+                event-set__mouseenter="scale: .6 .6 .6"
+                event-set__mouseleave="scale: .5 .5 .5">
+                <a-animation 
+                    to='-50 360 0' 
+                    easing='linear' 
+                    dur='10000' 
+                    repeat='indefinite'>
+                </a-animation>
+            </a-entity>
+
+            <a-entity
+                id="ugklh-on" 
+                mixin="ugklh-button" 
+                instantiator="on: click; group: lefthand; mixin: ugklh ugklhpos;" 
+                position="0 .6 0" 
+                rotation="-50 0 0" 
+                scale=".5 .5 .5"
+                event-set__mouseenter="scale: .6 .6 .6"
+                event-set__mouseleave="scale: .5 .5 .5">
+                <a-animation 
+                    to='-50 360 0' 
+                    easing='linear' 
+                    dur='10000' 
+                    repeat='indefinite'>
+                </a-animation>
+            </a-entity>
+
+            <!--<a-entity position="10 1.5 18" scale="4 4 4" rotation="0 0 0" n-layout-browser="url: http://hah.altvr.com/play; isEnclosure: true"></a-entity>-->
 
        		<!--<a-entity n-text='text: Do not click this button.\n It will crash your game.\n Every now and then, however, there is an offchance it could make you fabulous, possibly.; fontSize: 1; width: 2;' position="0 1 0"></a-entity>-->
         </a-entity>
